@@ -8,26 +8,55 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="navigation" role="navigation">
-                <a href="image.html">Images</a>
-                <a href="advanced.html">Advanced Search</a>
+            <div class="navigation">
+                <div>
+                    <p style="color: dodgerblue;">Google Search</p>
+                    <a href="image.html">Images</a>
+                    <a href="advanced.html">Advanced Search</a>
+                </div>
             </div>
             <div class="logo">
-                <h1>Booble</h1>
+                <div>
+                    <img src="media/booble_search.png" alt="Alternative logo image for Google">
+                </div>
             </div>
             <div class="search">
-                <form action="https://www.google.com/search">
-                    <input type="text" name="q">
-                    <input type="submit" value="Google Search">
+                <form id="form" action="https://www.google.com/search">
+                    <div class="search-container">
+                        <input name="q" placeholder="Booble will send your search query to Google's server" class="textarea" rows="1" autofocus title="Search" label="Search" autocapitalize="off" autocorrect="off" maxlength="2048" spellcheck="false"></input>
+                        <div class="search-buttons">
+                            <center>
+                                <input id="input1" type="submit" value="Google Search">
+                                <input id="input2" type="submit" value="I'm Feeling Lucky">
+                            </center>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <div class="empty">
-
-            </div>
-            <div class="footer">
+            <footer>
                 <p>Made by <a href="https://github.com/Bocyaa">Bocyaa</a></p>
                 <p>Nürnberg, Germany</p>
-            </div>
+            </footer>
         </div>
+        <script>
+            document.getElementById('input1').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the form from submitting immediately
+                if (document.getElementById('lucky')) {
+                    document.getElementById('lucky').remove(); // Remove the btnI input if it exists
+                }
+                document.getElementById('form').submit(); // Submit the form without btnI
+            });
+        
+            document.getElementById('input2').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the form from submitting immediately
+                var input = document.createElement('input'); // Create a new hidden input for btnI
+                input.type = 'hidden';
+                input.name = 'btnI';
+                input.id = 'lucky';
+                input.value = 'I am Feeling Lucky';
+                document.getElementById('form').appendChild(input); // Append the hidden input to the form
+                document.getElementById('form').submit(); // Submit the form with btnI
+            });
+        </script>
     </body>
 </html>
